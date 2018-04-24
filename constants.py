@@ -1,2 +1,1 @@
-ROOT_DIR = './'
-
+ROOT_DIR = 'c:/temp/py/datatata'
