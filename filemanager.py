@@ -10,18 +10,18 @@ import constants
 class Filemanager:
 
     def __init__(self):
-        self.root_dir = constants.ROOT_DIR
+        self.temp_dir = constants.ROOT_DIR
+        self.arch_dir = constants.ARCH_DIR
 
     def get_dir_path(self):
         timestamp = time.time()
         dir_path = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d_%H-%M')
-        path = "%s/%s" % (self.root_dir, dir_path)
+        path = "%s/%s" % (self.temp_dir, dir_path)
         return path
 
     def zip_folder(self, dir_name):
-        base_name = "%s%s" % (self.root_dir, dir_name)
-        print(dir_name, base_name)
-        shutil.make_archive(dir_name, 'zip')
+        target_arch = "%s/%s" % (self.arch_dir, dir_name[self.temp_dir.__len__() :])
+        shutil.make_archive(target_arch, 'zip', dir_name)
 
     def remove_dir(self, dir_name):
 
