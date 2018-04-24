@@ -20,7 +20,7 @@ class Filemanager:
         return path
 
     def zip_folder(self, dir_name):
-        target_arch = "%s/%s" % (self.arch_dir, dir_name[self.temp_dir.__len__() :])
+        target_arch = "%s/%s" % (self.arch_dir, dir_name[self.temp_dir.__len__():])
         shutil.make_archive(target_arch, 'zip', dir_name)
 
     def remove_dir(self, dir_name):
