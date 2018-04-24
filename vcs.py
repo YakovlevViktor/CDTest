@@ -1,4 +1,5 @@
 import svn.remote
+import svn.exception
 
 import testdata
 
@@ -10,7 +11,11 @@ class VCS:
 
     def svn_checkout(self, url, data_dir):
         svn_client = svn.remote.RemoteClient(url, username=self.user, password=self.password)
-        print(svn_client.info())
-        enty_path = data_dir + svn_client.info().get('relative_url')[1:]
-        svn_client.checkout(enty_path)
-        return enty_path
+        #Check if we could checkout repo
+        try:
+            enty_path = data_dir + svn_client.info().get('relative_url')[1:]
+            svn_client.checkout(enty_path)
+        except svn.exception.SvnException:
+            return None
+        else:
+            return enty_path
