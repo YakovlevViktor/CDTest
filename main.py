@@ -2,8 +2,8 @@ import json
 import os
 
 import constants
-from filemanager import Filemanager
-from vcs import VCS
+from utils.filemanager import Filemanager
+from utils.vcs import VCS
 
 input_dir = constants.INPUT_DIR
 processed_dir = constants.PROCESSED_FILES_DIR
