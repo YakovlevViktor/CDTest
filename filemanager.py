@@ -1,8 +1,8 @@
 import datetime
-import shutil
-import time
 import os
+import shutil
 import stat
+import time
 
 import constants
 
