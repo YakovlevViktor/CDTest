@@ -1,13 +1,14 @@
 import svn.exception
 import svn.remote
 
-import testdata
+from init import config
 
 
 class VCS:
     def __init__(self):
-        self.user = testdata.usr
-        self.password = testdata.psw
+        self.config = config
+        self.user = self.config.VCS_USR
+        self.password = self.config.VCS_PSW
 
     def svn_checkout(self, url, data_dir):
         svn_client = svn.remote.RemoteClient(url, username=self.user, password=self.password)

@@ -4,18 +4,19 @@ import shutil
 import stat
 import time
 
-import constants
+from init import config
 
 
 class Filemanager:
 
     def __init__(self):
-        self.temp_dir = constants.ROOT_DIR
-        self.arch_dir = constants.ARCH_DIR
+        self.config = config
+        self.temp_dir = "%s%s" % (self.config.WORK_DIR, 'temp')
+        self.arch_dir = "%s%s" % (self.config.WORK_DIR, 'arch')
 
     def get_dir_path(self):
         timestamp = time.time()
-        dir_path = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d_%H-%M')
+        dir_path = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d_%H-%M-%S')
         path = "%s/%s" % (self.temp_dir, dir_path)
         return path
 
@@ -25,7 +26,6 @@ class Filemanager:
         return target_arch
 
     def remove_dir(self, dir_name):
-
         def on_rm_error(self, path, exc_info):
             os.chmod(path, stat.S_IWRITE)
             os.remove(path)

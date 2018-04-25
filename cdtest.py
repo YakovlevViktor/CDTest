@@ -1,13 +1,13 @@
 import json
 import os
 
-import constants
+from init import config
 from utils.filemanager import Filemanager
 from utils.postgres import Batch, Task, db
 from utils.vcs import VCS
 
-input_dir = constants.INPUT_DIR
-processed_dir = constants.PROCESSED_FILES_DIR
+input_dir = "%s%s" % (config.WORK_DIR, 'input')
+processed_dir = "%s%s" % (config.WORK_DIR, 'processed')
 fm = Filemanager()
 vcs = VCS()
 
