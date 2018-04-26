@@ -14,6 +14,7 @@ class Filemanager:
         self.temp_dir = "%s%s" % (self.config.WORK_DIR, 'temp')
         self.arch_dir = "%s%s" % (self.config.WORK_DIR, 'arch')
 
+    # generate a name for archive
     def get_dir_path(self):
         timestamp = time.time()
         dir_path = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d_%H-%M-%S')

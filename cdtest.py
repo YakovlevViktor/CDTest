@@ -11,22 +11,25 @@ processed_dir = "%s%s" % (config.WORK_DIR, 'processed')
 fm = Filemanager()
 vcs = VCS()
 
+# process each file in input dir
 for file in os.listdir(input_dir):
+    # new bd record
     batch = Batch(file_in=file)
     file_path = "%s/%s" % (input_dir, file)
     jfile = json.load(open(file_path))
     data_dir = fm.get_dir_path()
 
+    # process each found url
     for url in jfile['url']:
-        print(url)
-
         task = Task(url=url)
+        #link task to the corresponding batch
         batch.tasks.append(task)
 
         endpoint_path = vcs.svn_checkout(url, data_dir)
         if endpoint_path is not None:
             task.status = 'OK'
             fm.remove_dir(endpoint_path + "/.svn")
+        # smth went wrong during checkout
         else:
             task.status = 'Failed'
             batch.status = 'Failed'
