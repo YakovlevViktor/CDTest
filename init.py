@@ -1,3 +1,4 @@
+import os
 import sys
 
 
@@ -12,6 +13,19 @@ class Config():
         self.DB_CONNECT_STR = db_connect_string
         self.VCS_USR = vcs_login
         self.VCS_PSW = vcs_psw
+
+        arch = "%s%s" % (self.WORK_DIR, "arch")
+        temp = "%s%s" % (self.WORK_DIR, "temp")
+        input = "%s%s" % (self.WORK_DIR, "input")
+        processed = "%s%s" % (self.WORK_DIR, "processed")
+        if not os.path.exists(arch):
+            os.mkdir(arch)
+        if not os.path.exists(temp):
+            os.mkdir(temp)
+        if not os.path.exists(input):
+            os.mkdir(input)
+        if not os.path.exists(processed):
+            os.mkdir(processed)
 
 
 if len(sys.argv) != 5:
